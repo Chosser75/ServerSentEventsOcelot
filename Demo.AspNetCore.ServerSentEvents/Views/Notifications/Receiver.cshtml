@@ -20,7 +20,9 @@
         var source = new EventSource('/sse-notifications');
 
         source.onmessage = function (event) {
-            showNotification(event.data);
+            if (event.data.includes("Request1") ) {
+                showNotification(event.data);
+            }
         };
 
         source.addEventListener('alert', function(event) {

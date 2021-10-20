@@ -4,6 +4,6 @@ namespace Demo.AspNetCore.ServerSentEvents.Services
 {
     public interface IPromocodeService
     {
-        Task<string> CancelPromocodeAsync(string id);
+        Task CancelPromocodeAsync(string id, string requestId);
     }
 }

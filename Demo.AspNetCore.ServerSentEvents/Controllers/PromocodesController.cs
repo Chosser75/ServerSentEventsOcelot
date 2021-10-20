@@ -17,18 +17,18 @@ namespace Demo.AspNetCore.ServerSentEvents.Controllers
             _promocodeService = promocodeService;
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> CancelPromocode(string id)
+        [HttpPut("{id}/{requestId}")]
+        public IActionResult CancelPromocode(string id, string requestId)
         {
             Thread t = new Thread( async () =>
             {
-                await _promocodeService.CancelPromocodeAsync(id);
+                await _promocodeService.CancelPromocodeAsync(id, requestId);
             });
             t.IsBackground = false;
             t.Start();
             
 
-            return Ok("Заявка на отмену промокода принята. Дождитесь ответа.");
+            return Ok($"Запрос {requestId} на отмену промокода {id} принят. Дождитесь ответа.");
         }
     }
 }
