@@ -6,11 +6,11 @@ namespace Demo.AspNetCore.ServerSentEvents.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Promocodes : ControllerBase
+    public class PromocodesController : ControllerBase
     {
         private readonly IPromocodeService _promocodeService;
 
-        public Promocodes(IPromocodeService promocodeService)
+        public PromocodesController(IPromocodeService promocodeService)
         {
             _promocodeService = promocodeService;
         }

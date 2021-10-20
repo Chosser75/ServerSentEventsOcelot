@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Demo.AspNetCore.ServerSentEvents.Services
@@ -20,11 +21,21 @@ namespace Demo.AspNetCore.ServerSentEvents.Services
             {
                 await _notificationsService.SendNotificationAsync(message, false);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 message = $"Failed to cancel promocode {id}.";
             }
-            return message;
+
+            var stringBuilder = new StringBuilder(message);
+
+            var clients = _notificationsService.GetClientsDetails();
+
+            foreach (var client in clients)
+            {
+                stringBuilder.Append($":::::::::: {client}");
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }

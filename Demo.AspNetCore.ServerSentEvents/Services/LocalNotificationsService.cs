@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Demo.AspNetCore.ServerSentEvents.Services
 {
@@ -15,6 +16,12 @@ namespace Demo.AspNetCore.ServerSentEvents.Services
         {
             return SendSseEventAsync(notification, alert);
         }
+
+        public List<string> GetClientsDetails()
+        {
+            return GetClients();
+        }
+
         #endregion
     }
 }

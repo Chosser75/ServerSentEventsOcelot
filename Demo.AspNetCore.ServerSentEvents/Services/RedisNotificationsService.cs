@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using StackExchange.Redis;
@@ -34,6 +35,11 @@ namespace Demo.AspNetCore.ServerSentEvents.Services
             ISubscriber subscriber = _redis.GetSubscriber();
 
             return subscriber.PublishAsync(alert ? ALERTS_CHANNEL : NOTIFICATIONS_CHANNEL, notification);
+        }
+
+        public List<string> GetClientsDetails()
+        {
+            return GetClients();
         }
         #endregion
     }

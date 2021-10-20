@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Lib.AspNetCore.ServerSentEvents;
 
@@ -27,6 +29,20 @@ namespace Demo.AspNetCore.ServerSentEvents.Services
                 Data = new List<string>(notification.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None))
             });
         }
+
+        protected List<string> GetClients()
+        {
+            var clients = _notificationsServerSentEventsService.GetClients();
+            Debug.WriteLine($"----------------------------- Clients {JsonSerializer.Serialize(clients)} --------------------------------------");
+            var clientsList = new List<string>();
+
+            foreach (var client in clients)
+            {
+                clientsList.Add(JsonSerializer.Serialize(client));
+            }
+            return clientsList;
+        }
+
         #endregion
     }
 }
