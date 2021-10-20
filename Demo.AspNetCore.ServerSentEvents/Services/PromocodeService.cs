@@ -21,14 +21,13 @@ namespace Demo.AspNetCore.ServerSentEvents.Services
             try
             {
                 await _notificationsService.SendNotificationAsync(message, false);
+                Debug.WriteLine("Notification has been sent successfully.");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"{ex.Message}. {ex.StackTrace}.");
             }
-
             
-
             return message;
         }
     }

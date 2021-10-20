@@ -66,6 +66,10 @@ namespace Demo.AspNetCore.ServerSentEvents
 
                     // Set up second (separated) Server-Sent Events endpoint.
                     endpoints.MapServerSentEvents<NotificationsServerSentEventsService>("/sse-notifications");
+                    //endpoints.MapServerSentEvents<NotificationsServerSentEventsService>("/sse-notifications", new ServerSentEventsOptions
+                    //{
+                    //    Authorization = ServerSentEventsAuthorization.Default
+                    //});
 
                     endpoints.MapControllerRoute("default", "{controller=Notifications}/{action=sse-notifications-receiver}");
                 });
