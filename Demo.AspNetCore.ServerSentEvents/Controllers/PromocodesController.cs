@@ -1,6 +1,7 @@
 ﻿using Demo.AspNetCore.ServerSentEvents.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Demo.AspNetCore.ServerSentEvents.Controllers
@@ -19,9 +20,15 @@ namespace Demo.AspNetCore.ServerSentEvents.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> CancelPromocode(string id)
         {
-            var response = await _promocodeService.CancelPromocodeAsync(id);
+            Thread t = new Thread( async () =>
+            {
+                await _promocodeService.CancelPromocodeAsync(id);
+            });
+            t.IsBackground = false;
+            t.Start();
+            
 
-            return Ok(response);
+            return Ok("Заявка на отмену промокода принята. Дождитесь ответа.");
         }
     }
 }

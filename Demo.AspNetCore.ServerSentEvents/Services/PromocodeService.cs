@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,17 +17,17 @@ namespace Demo.AspNetCore.ServerSentEvents.Services
         public async Task<string> CancelPromocodeAsync(string id)
         {
             await Task.Delay(5000);
-            var message = $"Protocol {id} is cancelled.";
+            var message = $"Protocol {id} is cancelled. Notification sent to client(s): {_notificationsService.GetClientsDetails()}";
             try
             {
                 await _notificationsService.SendNotificationAsync(message, false);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                message = $"Failed to cancel promocode {id}.";
+                Debug.WriteLine($"{ex.Message}. {ex.StackTrace}.");
             }
 
-            message = $"{message} sent to clients: {_notificationsService.GetClientsDetails()}";
+            
 
             return message;
         }
