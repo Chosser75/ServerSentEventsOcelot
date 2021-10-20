@@ -10,7 +10,7 @@ namespace Demo.AspNetCore.ServerSentEvents.Services
     internal abstract class NotificationsServiceBase
     {
         #region Fields
-        private INotificationsServerSentEventsService _notificationsServerSentEventsService;
+        private readonly INotificationsServerSentEventsService _notificationsServerSentEventsService;
         #endregion
 
         #region Constructor
@@ -30,17 +30,11 @@ namespace Demo.AspNetCore.ServerSentEvents.Services
             });
         }
 
-        protected List<string> GetClients()
+        protected string GetClients()
         {
             var clients = _notificationsServerSentEventsService.GetClients();
-            Debug.WriteLine($"----------------------------- Clients {JsonSerializer.Serialize(clients)} --------------------------------------");
-            var clientsList = new List<string>();
-
-            foreach (var client in clients)
-            {
-                clientsList.Add(JsonSerializer.Serialize(client));
-            }
-            return clientsList;
+                        
+            return JsonSerializer.Serialize(clients);
         }
 
         #endregion

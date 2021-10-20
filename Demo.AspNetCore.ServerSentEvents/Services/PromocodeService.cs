@@ -26,16 +26,9 @@ namespace Demo.AspNetCore.ServerSentEvents.Services
                 message = $"Failed to cancel promocode {id}.";
             }
 
-            var stringBuilder = new StringBuilder(message);
+            message = $"{message} sent to clients: {_notificationsService.GetClientsDetails()}";
 
-            var clients = _notificationsService.GetClientsDetails();
-
-            foreach (var client in clients)
-            {
-                stringBuilder.Append($":::::::::: {client}");
-            }
-
-            return stringBuilder.ToString();
+            return message;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Demo.AspNetCore.ServerSentEvents.Services
             return SendSseEventAsync(notification, alert);
         }
 
-        public List<string> GetClientsDetails()
+        public string GetClientsDetails()
         {
             return GetClients();
         }

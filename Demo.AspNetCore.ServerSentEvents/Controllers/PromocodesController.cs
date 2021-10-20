@@ -1,5 +1,6 @@
 ﻿using Demo.AspNetCore.ServerSentEvents.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Demo.AspNetCore.ServerSentEvents.Controllers
@@ -15,7 +16,7 @@ namespace Demo.AspNetCore.ServerSentEvents.Controllers
             _promocodeService = promocodeService;
         }
 
-        [HttpPost("{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> CancelPromocode(string id)
         {
             var response = await _promocodeService.CancelPromocodeAsync(id);

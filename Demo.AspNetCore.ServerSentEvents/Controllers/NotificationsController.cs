@@ -9,7 +9,7 @@ namespace Demo.AspNetCore.ServerSentEvents.Controllers
     public class NotificationsController : Controller
     {
         #region Fields
-        private INotificationsService _notificationsService;
+        private readonly INotificationsService _notificationsService;
         #endregion
 
         #region Constructor

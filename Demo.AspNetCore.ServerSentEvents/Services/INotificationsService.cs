@@ -6,6 +6,6 @@ namespace Demo.AspNetCore.ServerSentEvents.Services
     public interface INotificationsService
     {
         Task SendNotificationAsync(string notification, bool alert);
-        List<string> GetClientsDetails();
+        string GetClientsDetails();
     }
 }

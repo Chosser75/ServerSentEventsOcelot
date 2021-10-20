@@ -49,6 +49,8 @@ namespace Demo.AspNetCore.ServerSentEvents
 
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

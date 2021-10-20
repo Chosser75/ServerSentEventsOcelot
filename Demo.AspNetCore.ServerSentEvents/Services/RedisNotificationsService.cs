@@ -14,7 +14,7 @@ namespace Demo.AspNetCore.ServerSentEvents.Services
         private const string NOTIFICATIONS_CHANNEL = "NOTIFICATIONS";
         private const string ALERTS_CHANNEL = "ALERTS";
 
-        private ConnectionMultiplexer _redis;
+        private readonly ConnectionMultiplexer _redis;
         #endregion
 
         #region Constructor
@@ -37,7 +37,7 @@ namespace Demo.AspNetCore.ServerSentEvents.Services
             return subscriber.PublishAsync(alert ? ALERTS_CHANNEL : NOTIFICATIONS_CHANNEL, notification);
         }
 
-        public List<string> GetClientsDetails()
+        public string GetClientsDetails()
         {
             return GetClients();
         }
